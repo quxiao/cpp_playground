@@ -37,12 +37,15 @@ class LessThan
 {
 public:
     LessThan(int threshold): _threshold(threshold) {}
-    bool operator() (const std::string& str) const { return str.length() < _threshold; }
+    bool operator() (const std::string& str) const
+    {
+        return str.length() < _threshold;
+    }
 private:
     const int _threshold;
 };
 
-int functor_impl(const std::vector<std::string>& str_vec, size_t threshold)
+int functor_count(const std::vector<std::string>& str_vec, size_t threshold)
 {
     return std::count_if(str_vec.begin(), str_vec.end(), LessThan(threshold));
     // the code below is also ok
@@ -60,6 +63,6 @@ int main ()
 
     std::cout << common_count(str_vec, threshold) << std::endl;
     std::cout << impl_less_than_five(str_vec) << std::endl;       //use const threshold, oops
-    std::cout << functor_impl(str_vec, threshold) << std::endl;
+    std::cout << functor_count(str_vec, threshold) << std::endl;
     return 0;
 }
