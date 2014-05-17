@@ -12,15 +12,10 @@ StringSplitter::StringSplitter(const char* str, char sep)
 
 void StringSplitter::_init()
 {
-    while (head_ != NULL && *tail_ != sep_ && *tail_ != '\0')
-    {
-        ++ tail_;
-    }
-    while (head_ != NULL && *str_tail_ != '\0')
-    {
-        ++ str_tail_;
-    }
-    printf("head: %p, tail: %p, str_tail: %p\n", head_, tail_, str_tail_);
+    while (head_ != NULL && *head_ == sep_ && *head_ != '\0') { ++ head_; }
+    tail_ = head_;
+    while (head_ != NULL && *tail_ != sep_ && *tail_ != '\0') { ++ tail_; }
+    while (head_ != NULL && *str_tail_ != '\0') { ++ str_tail_; }
 }
 
 StringSplitter::operator bool() const
@@ -46,9 +41,6 @@ StringSplitter& StringSplitter::operator++()
     while (*head_ == sep_ && *head_ != '\0' && head_ != str_tail_) { ++ head_; }
     tail_ = head_;
     while (*tail_ != sep_ && *tail_ != '\0' && tail_ != str_tail_) { ++ tail_; }
-
-    printf("head: %p %c\n", head_, *head_);
-    printf("tail: %p %c\n", tail_, *tail_);
 
     return *this;
 }
