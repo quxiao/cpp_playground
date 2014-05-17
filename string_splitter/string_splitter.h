@@ -1,5 +1,20 @@
 #include <cstring>
 
+/*
+ *
+ * A utility for splitting string.
+ * In the process of splitting, these functions don't modify the origin string.
+ *
+ * Usage:
+ *      const char* str = ......;
+ *      for (StringSplitter splitter(str, '\t'); splitter; ++ splitter)
+ *      {
+ *          printf("%.*s\n", splitter.length(), splitter.field());
+ *      }
+ *
+ */
+
+
 class StringSplitter
 {
 public:
